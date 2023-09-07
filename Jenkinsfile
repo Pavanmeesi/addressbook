@@ -5,11 +5,11 @@ pipeline {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "mymaven"
     }
-    // parameters{
-    //     string(name:'Env', defaultValue:'Test',description:'Environment to deploy')
-    //     booleanParam(name:'executeTests', defaultValue:true, description:'Whether to run or not')
-    //     choice(name:'AppVersion',choices:['1','2','3'])
-    // }
+    parameters{
+        string(name:'Env', defaultValue:'Test',description:'Environment to deploy')
+        booleanParam(name:'executeTests', defaultValue:true, description:'Whether to run or not')
+        choice(name:'AppVersion',choices:['1','2','3'])
+    }
 
     stages {
         stage('compile') {
@@ -19,11 +19,11 @@ pipeline {
             }
         }
         stage('UnitTest') {
-            // when{
-            //     expression{
-            //         parameters.executeTests == true
-            //     }
-            // }
+            when{
+                expression{
+                    params.executeTests == true
+                }
+            }
             steps {
                 sh "mvn test"
             }
@@ -36,7 +36,7 @@ pipeline {
         stage('Package') {
             steps {
                 sh "mvn package"
-                // echo "deploying the app version: ${parameters.AppVersion}"
+                echo "deploying the app version: ${parameters.AppVersion}"
                 
             }
         }
