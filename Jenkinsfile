@@ -36,7 +36,7 @@ pipeline {
         stage('Package') {
             steps {
                 sh "mvn package"
-                echo "deploying the app version: ${parameters.AppVersion}"
+                echo "deploying the app version: ${params.AppVersion}"
                 
             }
         }
