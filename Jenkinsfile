@@ -36,7 +36,7 @@ pipeline {
             }
         }
         stage('Package') {
-            agent{label:'linux_slave'}
+            agent{label 'linux_slave'}
             steps {
                 sh "mvn package"
                 echo "deploying the app version: ${params.AppVersion}"
@@ -44,7 +44,7 @@ pipeline {
             }
         }
         stage('Deploy'){
-            agent{label:'linux_slave'}
+            agent{label 'linux_slave'}
             input{
                     message "Please provide the approval"
                     ok "Yes to deploy"
