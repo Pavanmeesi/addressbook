@@ -46,10 +46,10 @@ pipeline {
         stage('Deploy'){
             agent{label:'linux_slave'}
             input{
-                    message: "Please provide the approval"
+                    message "Please provide the approval"
                     ok "Yes to deploy"
                     parameters{
-                        choice(name:'AppVersion',choices['1.1','1.2'])
+                        choice(name:'AppVersion',choices:['1.1','1.2'])
                     }
                 }
             steps{
