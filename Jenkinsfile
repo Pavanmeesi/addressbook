@@ -50,7 +50,7 @@ pipeline {
                     message: "Please provide the approval"
                     ok "Yes to deploy"
                     parameters{
-                        choices:{name:'AppVersion',choice['1.1','1.2']}
+                        choice(name:'AppVersion',choices['1.1','1.2'])
                     }
                 }
             }
